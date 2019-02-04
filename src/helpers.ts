@@ -1,4 +1,4 @@
-export const getContext = (width, height) => {
+const getContext = (width, height) => {
   const canvas = document.createElement('canvas')
   canvas.setAttribute('width', width)
   canvas.setAttribute('height', height)
