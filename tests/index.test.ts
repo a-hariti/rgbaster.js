@@ -3,16 +3,17 @@ import analyze from '../src/index'
 const green = 'rgb(126,211,33)'
 const red = 'rgb(255,0,0)'
 
-
 it('tests error with images', () => {
   const img = ''
-  expect.assertions(1);
-  return expect(analyze(img)).rejects.toEqual(new Error('An error occurred attempting to load image'));
-});
-
+  expect.assertions(1)
+  return expect(analyze(img)).rejects.toEqual(
+    new Error('An error occurred attempting to load image')
+  )
+})
 
 it('gets colors for base64 encoded images', async () => {
-  const img = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAGhJREFUSA3t0rENgCAABVFxEwdgRRNmZABGEWsoPsWVZ6f5OZMH5e3Pdy1Pq2P5wr/efPKs6I/PnIBV+W/WdrmAbkx4xpGIGkhNScaO1JGIGkhNScaO1JGIGkhNScaO1JGIGkhNScbOBKiIBjchGZzYAAAAAElFTkSuQmCC'
+  const img =
+    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAGhJREFUSA3t0rENgCAABVFxEwdgRRNmZABGEWsoPsWVZ6f5OZMH5e3Pdy1Pq2P5wr/efPKs6I/PnIBV+W/WdrmAbkx4xpGIGkhNScaO1JGIGkhNScaO1JGIGkhNScaO1JGIGkhNScbOBKiIBjchGZzYAAAAAElFTkSuQmCC'
   const result = await analyze(img)
 
   expect(result[0].count).toEqual(875)
@@ -35,7 +36,7 @@ it('gets colors for images with a source', async () => {
 
 it('ignores a given color for images with a source', async () => {
   const img = 'http://localhost:9080/dominant-red-secondary-green.png'
-  const ignoreColors = [ 'rgb(255,0,0)']
+  const ignoreColors = ['rgb(255,0,0)']
   const result = await analyze(img, { ignore: ignoreColors })
 
   expect(result[0].count).toEqual(25)
@@ -68,7 +69,8 @@ it('works with jpgs', async () => {
 })
 
 it('gets colors for images with semi transparency', async () => {
-  const img = 'http://localhost:9080/dominant-red-secondary-green-transparent.png'
+  const img =
+    'http://localhost:9080/dominant-red-secondary-green-transparent.png'
   const result = await analyze(img)
 
   expect(result[0].count).toEqual(875)
@@ -79,7 +81,8 @@ it('gets colors for images with semi transparency', async () => {
 })
 
 it('skips fully transparent pixels', async () => {
-  const img = 'http://localhost:9080/dominant-red-secondary-green-mostly-transparent.png'
+  const img =
+    'http://localhost:9080/dominant-red-secondary-green-mostly-transparent.png'
   const result = await analyze(img)
 
   expect(result[0].count).toEqual(4)
