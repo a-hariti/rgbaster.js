@@ -12,10 +12,13 @@ A dead simple, zero-dependency, promise-based javascript library for extracting 
 ```
 npm install --save rgbaster
 ```
+Or download the `umd` build from the [unpkg]('https://unpkg.com/rgbaster@2.1.0/dist/rgbaster.umd.js') CDN (recommended)
+
+You can also include it directly in a `script` tag, but you would need to load images from a server with a proper [cors]('https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_enabled_image') settings.
 
 ## Usage
 
-This library exports a default function which returns a promise resolving to a sorted array with
+This library exports a default function, or defines the global `rgbaster` function in the `umd` build, which returns a promise resolving to a sorted array with
 the most dominant color at index 0, secondary at index 1, so on and so forth.
 
 ```js
@@ -25,6 +28,7 @@ the most dominant color at index 0, secondary at index 1, so on and so forth.
   { color: 'rgb(120,8,202)', count: 3  },
 ]
 ```
+The `npm` way:
 
 ```javascript
 import analyze from 'rgbaster'
@@ -37,7 +41,17 @@ console.log(`The dominant color is ${result[0].color} with ${result[0].count} oc
 console.log(`The secondary color is ${result[1].color} with ${result[1].count} occurrence(s)`)
 // => The  secondary color is rgb(255,0,0) with 1 occurrence(s)
 ```
+The `script` tag way:
 
+```javascript
+const result = await rgbaster('/2px-blue-and-1px-red-image.png') // also supports base64 encoded image strings
+
+console.log(`The dominant color is ${result[0].color} with ${result[0].count} occurrence(s)`)
+// => The  dominant color is rgb(0,0,255) with 2 occurrence(s)
+
+console.log(`The secondary color is ${result[1].color} with ${result[1].count} occurrence(s)`)
+// => The  secondary color is rgb(255,0,0) with 1 occurrence(s)
+```
 
 ## Configuration options
 
@@ -58,6 +72,7 @@ In order to achieve greater speed, you can have `rgbaster` scale down the image 
 ```js
 const result = await analyze('/image.png', { scale: 0.6 })
 ```
+ps: the options also apply for `script` version.
 
 ## Browser support
 
