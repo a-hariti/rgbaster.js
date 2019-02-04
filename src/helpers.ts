@@ -5,10 +5,10 @@ const getContext = (width, height) => {
   return canvas.getContext('2d')
 }
 
-export const getImageData = (
+export function getImageData(
   src: string,
   scale: number = 1
-): Promise<Uint8ClampedArray> => {
+): Promise<Uint8ClampedArray> {
   const img = new Image()
   src = src || img.src
 
@@ -36,7 +36,7 @@ export const getImageData = (
   })
 }
 
-export const getCounts = (data: Uint8ClampedArray, ignore: string[]): [] => {
+export function getCounts(data: Uint8ClampedArray, ignore: string[]): [] {
   let countMap = {}
 
   for (let i = 0; i < data.length; i += 4 /* 4 gives us r, g, b, and a*/) {
