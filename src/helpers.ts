@@ -37,7 +37,7 @@ export const getImageData = (
 }
 
 export const getCounts = (data: Uint8ClampedArray, ignore: string[]): [] => {
-  const countMap = {}
+  let countMap = {}
 
   for (let i = 0; i < data.length; i += 4 /* 4 gives us r, g, b, and a*/) {
     let alpha: number = data[i + 3]
