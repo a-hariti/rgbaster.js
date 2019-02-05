@@ -41,7 +41,7 @@ console.log(`The dominant color is ${result[0].color} with ${result[0].count} oc
 console.log(`The secondary color is ${result[1].color} with ${result[1].count} occurrence(s)`)
 // => The  secondary color is rgb(255,0,0) with 1 occurrence(s)
 ```
-The `script` tag way:
+Using a `script` tag:
 
 ```javascript
 const result = await rgbaster('/2px-blue-and-1px-red-image.png') // also supports base64 encoded image strings
