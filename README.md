@@ -72,7 +72,6 @@ In order to achieve greater speed, you can have `rgbaster` scale down the image 
 ```js
 const result = await analyze('/image.png', { scale: 0.6 })
 ```
-ps: the options also apply for the `script` version.
 
 ## Browser support
 
